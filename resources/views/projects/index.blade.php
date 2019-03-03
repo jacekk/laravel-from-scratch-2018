@@ -7,10 +7,7 @@
 
     <ul>
         @foreach ($projects as $project)
-            <li>
-                <b>{{ $project->title }}</b>
-                - {{ $project->description }}
-            </li>
+            <li>{{ $project->title }}</li>
         @endforeach
     </ul>
 
