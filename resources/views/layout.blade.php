@@ -7,11 +7,12 @@
     <title>@yield('title', 'Home') | Laravel From Scratch</title>
 </head>
 <body>
-    @yield('content')
+    <h2>Menu:</h2>
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About us</a></li>
         <li><a href="/contact">Contact us</a></li>
     </ul>
+    @yield('content')
 </body>
 </html>
