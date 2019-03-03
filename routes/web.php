@@ -11,21 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    $tasks = [
-        'Hit the gym',
-        'Prepare post-workout meal',
-        'Eat meal',
-        'Relax on sauna',
-    ];
-
-    return view('welcome', compact('tasks'));
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/', 'PagesController@home');
+Route::get('/contact', 'PagesController@contact');
+Route::get('/about', 'PagesController@about');
