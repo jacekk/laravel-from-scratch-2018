@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Home') | Laravel From Scratch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
 </head>
 <body>
-    <h2>Menu:</h2>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About us</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/contact">Contact us</a></li>
-    </ul>
-    @yield('content')
+    <nav class="navbar is-light">
+        <div class="container">
+            <div class="navbar-menu">
+                <a class="navbar-item" href="/">Home</a>
+                <a class="navbar-item" href="/about">About us</a>
+                <a class="navbar-item" href="/projects">Projects</a>
+                <a class="navbar-item" href="/contact">Contact us</a>
+            </ul>
+        </div>
+    </nav>
+    <div class="section">
+        <div class="container">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>

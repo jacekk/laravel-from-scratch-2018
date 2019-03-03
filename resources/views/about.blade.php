@@ -3,5 +3,5 @@
 @section('title', 'About us')
 
 @section('content')
-    <h1>Working on it</h1>
+    <h3 class="title">Working on it</h3>
 @endsection

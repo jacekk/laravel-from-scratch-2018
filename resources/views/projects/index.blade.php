@@ -3,15 +3,16 @@
 @section('title', 'Projects')
 
 @section('content')
-    <h3>Projects:</h3>
+    <h3 class="title">Projects:</h3>
 
-    <ul>
+    <div class="list">
         @foreach ($projects as $project)
-            <li>{{ $project->title }}</li>
+            <a class="list-item" href="/projects/{{ $project->id }}">
+                {{ $project->title }}
+            </a>
         @endforeach
-    </ul>
-
-    <p>
-        <a href="/projects/create">Add a project</a>
-    </p>
+    </div>
+    <div>
+        <a class="button" href="/projects/create">Add a project</a>
+    </div>
 @endsection

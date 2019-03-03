@@ -3,9 +3,9 @@
 @section('title', 'Projects | Create')
 
 @section('content')
-    <h3 class="title">Creating project:</h3>
+    <h3 class="title">Editing project:</h3>
 
-    <form method="POST" action="/projects">
+    <form method="POST" action="/projects/{{ $project->id }}">
         @csrf
         <div class="field">
             <label for="title" class="label">Title</label>
@@ -26,7 +26,7 @@
                 <a href="/projects" class="button">Go to list</a>
             </div>
             <div class="control">
-                <button class="button is-primary" type="submit">Create</button>
+                <button class="button is-primary" type="submit">Save</button>
             </div>
         </div>
     </form>

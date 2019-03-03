@@ -1,11 +1,10 @@
 @extends('layout')
 
 @section('content')
-    <h1>Hello World :)</h1>
-
-    <ul>
+    <h3 class="title">Hello World :)</h3>
+    <ul class="list">
         @foreach ($tasks as $task)
-            <li>{{ $task }}</li>
+            <li class="list-item">{{ $task }}</li>
         @endforeach
     </ul>
 @endsection
