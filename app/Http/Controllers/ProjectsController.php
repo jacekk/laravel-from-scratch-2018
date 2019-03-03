@@ -82,7 +82,13 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+
+        $project->title = $request->input('title');
+        $project->description = $request->input('description');
+        $project->save();
+
+        return redirect(sprintf('/projects/%d', $id));
     }
 
     /**
@@ -93,6 +99,8 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::find($id)->delete();
+
+        return redirect('/projects');
     }
 }
