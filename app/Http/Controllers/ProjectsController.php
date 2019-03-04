@@ -92,7 +92,7 @@ class ProjectsController extends Controller
     private function getRequestAttrs() {
         return request()->validate([
             'title' => ['required', 'min:3'],
-            'description' => 'required',
+            'description' => ['required', 'min:3'],
         ]);
     }
 }

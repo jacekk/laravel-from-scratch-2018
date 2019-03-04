@@ -14,5 +14,6 @@
 Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
-Route::patch('/tasks/{task}', 'TasksController@update');
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 Route::resource('projects', 'ProjectsController');

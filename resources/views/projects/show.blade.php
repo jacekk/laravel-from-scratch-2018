@@ -33,6 +33,26 @@
         @endforelse
     </div>
 </div>
+<form action="/projects/{{ $project->id }}/tasks" method="POST">
+    @csrf
+    <div class="field has-addons">
+        <div class="control">
+            <input
+                autocomplete="off"
+                class="input"
+                name="description"
+                placeholder="New Task"
+                type="text"
+                value="{{ old('description') }}"
+            />
+        </div>
+        <div class="control">
+            <button type="submit" class="button">Add Task</button>
+        </div>
+    </div>
+    @include('errors')
+</form>
+<br>
 <div class="buttons has-addons">
     <a href="/projects" class="button">Go to list</a>
     <a class="button is-link" href="/projects/{{ $project->id }}/edit">Edit</a>
