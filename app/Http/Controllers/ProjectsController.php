@@ -32,19 +32,14 @@ class ProjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $project = new Project;
+        $values = request(['title', 'description']); // OR request()->all();
+        $project = Project::create($values);
 
-        $project->title = request('title');
-        $project->description = request('description');
-
-        $project->save();
-
-        return redirect('/projects');
+        return redirect()->route('projects.show', ['id' => $project->id]);
     }
 
     /**
@@ -53,10 +48,8 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::find($id);
-
         return view('projects.show', compact('project'));
     }
 
@@ -66,29 +59,22 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        $project = Project::find($id);
-
         return view('projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Project $project)
     {
-        $project = Project::find($id);
+        $project->update(request(['title', 'description']));
 
-        $project->title = $request->input('title');
-        $project->description = $request->input('description');
-        $project->save();
-
-        return redirect(sprintf('/projects/%d', $id));
+        return redirect()->route('projects.show', ['id' => $project->id]);
     }
 
     /**
@@ -97,9 +83,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        Project::find($id)->delete();
+        $project->delete();
 
         return redirect('/projects');
     }

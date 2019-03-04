@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'Projects')
 @section('content')
-<h3 class="title">Projects:</h3>
+<h3 class="title">Projects</h3>
 
 <div class="list">
     @forelse ($projects as $project)

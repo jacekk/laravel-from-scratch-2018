@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'Projects | Create')
 @section('content')
-<h3 class="title">Creating project:</h3>
+<h3 class="title">Creating project</h3>
 
 <form method="POST" action="/projects">
     @csrf
