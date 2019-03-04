@@ -36,8 +36,7 @@ class ProjectsController extends Controller
      */
     public function store()
     {
-        $values = request(['title', 'description']); // OR request()->all();
-        $project = Project::create($values);
+        $project = Project::create($this->getRequestAttrs()); // OR request(['title', 'description'])
 
         return redirect()->route('projects.show', ['id' => $project->id]);
     }
@@ -72,7 +71,7 @@ class ProjectsController extends Controller
      */
     public function update(Project $project)
     {
-        $project->update(request(['title', 'description']));
+        $project->update($this->getRequestAttrs());
 
         return redirect()->route('projects.show', ['id' => $project->id]);
     }
@@ -88,5 +87,12 @@ class ProjectsController extends Controller
         $project->delete();
 
         return redirect('/projects');
+    }
+
+    private function getRequestAttrs() {
+        return request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => 'required',
+        ]);
     }
 }

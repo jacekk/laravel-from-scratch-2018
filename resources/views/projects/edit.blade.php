@@ -21,6 +21,17 @@
         <a href="/projects/{{ $project->id }}" class="button ">Cancel</a>
         <button class="button is-pulled-right is-primary" type="submit">Save</button>
     </div>
+    @if ($errors->any())
+    <div class="field">
+        <div class="notification is-danger">
+            <ul>
+                @foreach ($errors->all() as $item)
+                <li>{{ $item }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    @endif
 </form>
 <br/>
 <form method="POST" action="/projects/{{ $project->id }}">

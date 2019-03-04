@@ -8,13 +8,13 @@
     <div class="field">
         <label for="title" class="label">Title</label>
         <div class="control">
-            <input class="input" autocomplete="off" type="text" name="title" placeholder="Project title">
+            <input class="input" autocomplete="off" type="text" name="title" placeholder="Project title" value="{{ old('title') }}">
         </div>
     </div>
     <div class="field">
         <label for="description" class="label">Description</label>
         <div class="control">
-            <textarea class="textarea" name="description" placeholder="Project description"></textarea>
+            <textarea class="textarea" name="description" placeholder="Project description">{{ old('description') }}</textarea>
         </div>
     </div>
     <div class="field is-grouped">
@@ -25,5 +25,16 @@
             <button class="button is-primary" type="submit">Create</button>
         </div>
     </div>
+    @if ($errors->any())
+    <div class="field">
+        <div class="notification is-danger">
+            <ul>
+                @foreach ($errors->all() as $item)
+                <li>{{ $item }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    @endif
 </form>
 @endsection
