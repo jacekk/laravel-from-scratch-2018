@@ -4,7 +4,7 @@
 <h3 class="title">Projects</h3>
 
 <div class="list">
-    @forelse ($projects as $project)
+    @forelse($projects as $project)
         <a class="list-item" href="/projects/{{ $project->id }}">
             {{ $project->title }}
         </a>
