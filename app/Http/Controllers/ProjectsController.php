@@ -56,6 +56,15 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
+        // simple ways:
+        // abort_if($project->owner_id !== auth()->id(), 403);
+        // abort_unless($project->owner_id === auth()->id(), 403);
+        // 2nd way using policies:
+        // $this->authorize('update', $project);
+        // 3rd way using policies and gates:
+        // abort_unless(\Gate::allows('update', $project), 403);
+        abort_if(\Gate::denies('update', $project), 403);
+
         return view('projects.show', compact('project'));
     }
 
@@ -78,6 +87,7 @@ class ProjectsController extends Controller
      */
     public function update(Project $project)
     {
+        $this->authorize('update', $project);
         $project->update($this->getRequestAttrs());
 
         return redirect()->route('projects.show', ['id' => $project->id]);
