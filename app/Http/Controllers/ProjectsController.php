@@ -7,6 +7,10 @@ use App\Project;
 
 class ProjectsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // ->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $userId = auth()->id();
+        $projects = Project::where('owner_id', $userId)->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -36,7 +41,9 @@ class ProjectsController extends Controller
      */
     public function store()
     {
-        $project = Project::create($this->getRequestAttrs()); // OR request(['title', 'description'])
+        $attrs = $this->getRequestAttrs(); // OR request(['title', 'description'])
+        $attrs['owner_id'] = auth()->id();
+        $project = Project::create($attrs);
 
         return redirect()->route('projects.show', ['id' => $project->id]);
     }
