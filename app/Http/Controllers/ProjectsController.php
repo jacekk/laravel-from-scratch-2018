@@ -87,6 +87,7 @@ class ProjectsController extends Controller
      */
     public function update(Project $project)
     {
+        abort_if(\Gate::denies('update', $project), 403);
         $this->authorize('update', $project);
         $project->update($this->getRequestAttrs());
 
@@ -101,6 +102,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
+        abort_if(\Gate::denies('update', $project), 403);
         $project->delete();
 
         return redirect('/projects');

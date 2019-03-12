@@ -12,6 +12,10 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function owner() {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
     public function addTask($taskAttrs) {
         $this->tasks()->create($taskAttrs);
     }

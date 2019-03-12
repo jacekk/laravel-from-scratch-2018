@@ -5,6 +5,10 @@
 <div class="content">
     <h4>Title:</h4>
     <p>{{ $project->title }}</p>
+    @if($project->owner_id !== Auth::id())
+        <h4>Author:</h4>
+        <p>{{ $project->owner->name }}</p>
+    @endif
     <h4>Description:</h4>
     <p>{!! nl2br(e($project->description)) !!}</p>
     <h4>Tasks:</h4>
