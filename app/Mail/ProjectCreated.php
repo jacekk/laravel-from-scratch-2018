@@ -6,19 +6,26 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Project;
 
 class ProjectCreated extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $project;
+    public $buttonUrl;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Project $project)
     {
-        //
+        $this->project = $project;
+        $this->buttonUrl = route('projects.show', [
+            'project' => $project->id,
+        ]);
     }
 
     /**

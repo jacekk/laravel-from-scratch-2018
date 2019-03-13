@@ -1,10 +1,10 @@
 @component('mail::message')
-# Project has been created
+# New Project: {{ $project->title }}
 
-The body of your message. Foo bar.
+{{ $project->description }}
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => $buttonUrl])
+Check it out
 @endcomponent
 
 Thanks,<br>
