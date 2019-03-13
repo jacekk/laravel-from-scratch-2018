@@ -106,6 +106,7 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         abort_if(\Gate::denies('update', $project), 403);
+        $project->tasks()->delete();
         $project->delete();
 
         return redirect('/projects');
