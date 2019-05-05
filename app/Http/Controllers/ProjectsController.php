@@ -19,8 +19,10 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $userId = auth()->id();
-        $projects = Project::where('owner_id', $userId)->get();
+        // $userId = auth()->id();
+        // $projects = Project::where('owner_id', $userId)->get();
+        // OR
+        $projects = auth()->user()->projects;
 
         return view('projects.index', compact('projects'));
     }
@@ -67,6 +69,7 @@ class ProjectsController extends Controller
         // $this->authorize('update', $project);
         // 3rd way using policies and gates:
         // abort_unless(\Gate::allows('update', $project), 403);
+
         abort_if(\Gate::denies('update', $project), 403);
 
         return view('projects.show', compact('project'));
