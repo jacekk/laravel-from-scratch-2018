@@ -47,7 +47,8 @@ class ProjectsController extends Controller
         $attrs = $this->getRequestAttrs(); // OR request(['title', 'description'])
         $attrs['owner_id'] = auth()->id();
         $project = Project::create($attrs);
-        $to = \Auth::user()->email;
+        // $to = \Auth::user()->email;
+        $to = $project->owner->email;
 
         \Mail::to($to)->send(new ProjectCreated($project));
 
